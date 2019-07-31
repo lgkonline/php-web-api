@@ -1,0 +1,15 @@
+RewriteEngine On
+#RewriteBase /
+
+# Server Routing Rule
+# The routing structure is pretty flexible. Allowed is:
+
+# /MyControllerName/MethodName/Value
+RewriteRule ([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/?$ index.php?controller=$1&action=$2&id=$3 [QSA]
+
+# /MyControllerName/MethodName
+RewriteRule ([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/?$ index.php?controller=$1&action=$2 [QSA]
+
+# /MyControllerName 
+# In this case, the Index() method of the controller will be used. Of course this will only work when it's set.
+RewriteRule ([-a-zA-Z0-9]+)/?$ index.php?controller=$1 [QSA]
