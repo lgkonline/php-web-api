@@ -4,8 +4,6 @@ class Controller {
     protected $ActionGet;
     protected $ActionPost;
 
-    protected $ControllerName;
-
     protected $RouteBehaviour;
 
     // With `$routeBehaviour = false` you can use Controller classes inside of other controllers
@@ -14,15 +12,10 @@ class Controller {
         $this->RouteBehaviour = $routeBehaviour;
 
         if ($this->RouteBehaviour) {
-            $thisClassName = get_class($this);
-            $splitted = explode("\\", $thisClassName);
-            $this->ControllerName = str_replace("Controller", "", $splitted[count($splitted)-1]);            
-    
             $this->ActionGet = filter_input(INPUT_GET, "action");
             $this->ActionPost = filter_input(INPUT_POST, "action");
     
-            if (!$this->ActionGet)
-            {
+            if (!$this->ActionGet) {
                 $this->ActionGet = "Index";
             }
     
@@ -32,7 +25,6 @@ class Controller {
     }
 
     private function runActionMethod($actionMethod) {
-
         if (method_exists($this, $actionMethod)) {
             $reflection = new \ReflectionMethod($this, $actionMethod);
             if ($reflection->isPublic()) {
