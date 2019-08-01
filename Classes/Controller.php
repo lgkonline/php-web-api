@@ -1,9 +1,7 @@
 <?php
 
 class Controller {
-    protected $ActionGet;
-    protected $ActionPost;
-
+    protected $Action;
     protected $RouteBehaviour;
 
     // With `$routeBehaviour = false` you can use Controller classes inside of other controllers
@@ -12,15 +10,14 @@ class Controller {
         $this->RouteBehaviour = $routeBehaviour;
 
         if ($this->RouteBehaviour) {
-            $this->ActionGet = filter_input(INPUT_GET, "action");
-            $this->ActionPost = filter_input(INPUT_POST, "action");
+            $this->Action = filter_input(INPUT_GET, "action");
     
-            if (!$this->ActionGet) {
-                $this->ActionGet = "Index";
+            if (!$this->Action) {
+                $this->Action = "Index";
             }
     
             // Let execute the method the user has set in the URL parameter
-            $this->runActionMethod($this->ActionGet);
+            $this->runActionMethod($this->Action);
         }
     }
 
