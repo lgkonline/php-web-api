@@ -1,4 +1,6 @@
 RewriteEngine On
+
+# For some webhostings you need to uncomment the next line
 #RewriteBase /
 
 # Server Routing Rule
